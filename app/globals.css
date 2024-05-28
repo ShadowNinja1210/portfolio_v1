@@ -87,3 +87,42 @@
     background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
   }
 }
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  background: #000139;
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(0, 26, 158, 1) 0%,
+    rgba(0, 159, 179, 1) 50%,
+    rgba(0, 26, 158, 1) 100%
+  );
+  background: linear-gradient(90deg, rgba(0, 26, 158, 1) 0%, rgba(0, 159, 179, 1) 50%, rgba(0, 26, 158, 1) 100%);
+  background-size: 300% 100%;
+  animation: gradient-animation 1s infinite ease-in-out;
+}
+
+@keyframes gradient-animation {
+  0% {
+    width: 0;
+    right: unset;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
