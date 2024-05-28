@@ -84,7 +84,7 @@ export const projects = [
     des: "Share you unique and creative AI prompts with the world, using Next.js.",
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/oAuth.svg", "/mongo.svg"],
-    link: "https://github.com/adrianhajdin/zoom-clone",
+    link: "https://share-prompt-zeta.vercel.app/",
   },
   {
     id: 3,
@@ -100,7 +100,7 @@ export const projects = [
     des: "Various applications and games built using React, Next.js, Javascript, and Tailwind CSS.",
     img: "/p4.svg",
     iconLists: ["/re.svg", "/node.svg", "/mongo.svg", "/next.svg", "/javascript.svg"],
-    link: "https://github.com/adrianhajdin/ai_saas_app",
+    link: "#",
   },
 ];
 
