@@ -32,12 +32,14 @@ export default function TrackerPage() {
 
   // Stop the tracker
   const handleStop = async (startTime: Date) => {
+    console.log(startTime);
+
     await fetch("/api/tracker/stop", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ startTime: startTime.toISOString() }),
+      body: JSON.stringify({ startTime }),
     });
     getData();
   };

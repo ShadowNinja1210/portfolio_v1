@@ -13,6 +13,7 @@ export async function PATCH(req: Request) {
     const today = format(new Date(), "PP");
     const body = await req.json();
     const startTime = body.startTime;
+    console.log(startTime);
 
     const endTime = new Date().toISOString();
     console.log(startTime, endTime);
