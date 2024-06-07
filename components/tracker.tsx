@@ -57,14 +57,16 @@ export default function Tracker({ initialTimeSpent, handleStart, handleStop, sta
           <p className="text-lg">Track your studies and manage your time</p>
         </section>
 
-        <section className=" w-96 mx-auto">
-          <DotLottieReact
-            src="https://lottie.host/283e2f13-db8c-47d3-9aed-bde3b861c36d/CcYe5Obtkj.json"
-            speed={1}
-            loop
-            autoplay
-          />
-        </section>
+        {studying && (
+          <section className=" w-96 mx-auto">
+            <DotLottieReact
+              src="https://lottie.host/283e2f13-db8c-47d3-9aed-bde3b861c36d/CcYe5Obtkj.json"
+              speed={1}
+              loop
+              autoplay
+            />
+          </section>
+        )}
 
         <section className="flex flex-col gap-8">
           <div className="flex flex-col text-xl font-bold gap-2">
