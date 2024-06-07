@@ -5,12 +5,14 @@ import { format } from "date-fns/format";
 import { NextResponse } from "next/server";
 import { enIN } from "date-fns/locale";
 
-export async function PATCH() {
+export async function PATCH(req: Request) {
   try {
     await connectDB();
     setDefaultOptions({ locale: enIN });
     const today = format(new Date(), "PP");
-    const startTime = new Date().toISOString();
+    const body = await req.json();
+    const startTime = body.startTime;
+    console.log(startTime);
 
     const data = await Tracker.find({ date: today, startTime: null, endTime: null });
 

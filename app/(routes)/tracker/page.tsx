@@ -24,8 +24,13 @@ export default function TrackerPage() {
 
   // Start the tracker
   const handleStart = async () => {
+    const startTime = new Date();
     await fetch("/api/tracker/start", {
       method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ startTime }),
     });
     getData();
   };
