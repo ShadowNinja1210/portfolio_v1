@@ -37,7 +37,7 @@ export default function TrackerPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ startTime }),
+      body: JSON.stringify({ startTime: startTime.toISOString() }),
     });
     getData();
   };
