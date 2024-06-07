@@ -181,3 +181,13 @@ export const socialMedia = [
     link: "https://www.linkedin.com/in/mohit-jeswani-0233041b2/",
   },
 ];
+
+const games = [
+  {
+    id: 1,
+    title: "Game 1",
+    description: "This is a game",
+    img: "/game1.svg",
+    link: "#",
+  },
+];
