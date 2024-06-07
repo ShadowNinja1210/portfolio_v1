@@ -2,7 +2,6 @@ import { connectDB } from "@/lib/db";
 import { Tracker } from "@/schema/Schema";
 import { setDefaultOptions } from "date-fns";
 import { format } from "date-fns/format";
-import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import { enIN } from "date-fns/locale";
 
