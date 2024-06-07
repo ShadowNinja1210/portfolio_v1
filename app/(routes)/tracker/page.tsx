@@ -10,7 +10,7 @@ export default function TrackerPage() {
 
   // Fetch data from the API
   const getData = async () => {
-    const res = await fetch("/api/tracker");
+    const res = await fetch("/api/tracker", { cache: "no-store" });
     const data = await res.json();
     console.log(data);
     setTimeSpent(data.timeSpent);
@@ -38,7 +38,6 @@ export default function TrackerPage() {
   // Stop the tracker
   const handleStop = async (startTime: Date) => {
     console.log(startTime);
-
     await fetch("/api/tracker/stop", {
       method: "PATCH",
       headers: {
