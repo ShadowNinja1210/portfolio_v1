@@ -6,7 +6,7 @@ import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import { enIN } from "date-fns/locale";
 
-export async function PATCH(req: NextApiRequest) {
+export async function PATCH() {
   try {
     await connectDB();
     setDefaultOptions({ locale: enIN });
