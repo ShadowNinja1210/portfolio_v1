@@ -3,35 +3,25 @@
 import { useEffect, useState } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-export type TrackerProps = {
-  data: {
-    timeSpent: number;
-    currentStartTime: Date;
-    studying: boolean;
-  };
-  getData: () => Promise<{
-    timeSpent: number;
-    currentStartTime: Date;
-    studying: boolean;
-  }>;
-};
-
-export default function Tracker({ data, getData }: TrackerProps) {
-  const [timeSpent, setTimeSpent] = useState(data.timeSpent);
+export default function Tracker() {
+  const [data, setData] = useState({ timeSpent: 0, currentStartTime: new Date(), studying: false });
+  const [timeSpent, setTimeSpent] = useState(0);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
   const [studying, setStudying] = useState(false);
   const [startTime, setStartTime] = useState(new Date());
 
-  const setData = async () => {
-    const newData = await getData();
+  const getData = async () => {
+    const res = await fetch("/api/tracker");
+    const newData = await res.json();
+    setData(newData);
     setStudying(newData.studying);
     setTimeSpent(newData.timeSpent);
     setStartTime(new Date(newData.currentStartTime));
   };
 
   useEffect(() => {
-    setData();
-  }, [studying, data]);
+    getData();
+  }, []);
 
   // Start the tracker
   const handleStart = async () => {
@@ -43,7 +33,7 @@ export default function Tracker({ data, getData }: TrackerProps) {
       },
       body: JSON.stringify({ startTime }),
     });
-    setData();
+    getData();
   };
 
   // Stop the tracker
@@ -56,7 +46,8 @@ export default function Tracker({ data, getData }: TrackerProps) {
       },
       body: JSON.stringify({ startTime }),
     });
-    setData();
+    getData();
+    setStudying(false);
   };
 
   const formatTime = (seconds: number) => {
