@@ -21,6 +21,7 @@ export default function Tracker() {
     setStudying(newData.studying);
     setTimeSpent(newData.timeSpent);
     setStartTime(new Date(newData.currentStartTime));
+    setLoaderOn(false);
   };
 
   useEffect(() => {
