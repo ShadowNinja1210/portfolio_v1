@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import TrackerLoader from "./loader/tracker-loader";
 
 export default function Tracker() {
   const [data, setData] = useState({ timeSpent: 0, currentStartTime: new Date(), studying: false });
@@ -9,8 +10,10 @@ export default function Tracker() {
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
   const [studying, setStudying] = useState(false);
   const [startTime, setStartTime] = useState(new Date());
+  const [loaderOn, setLoaderOn] = useState(true);
 
   const getData = async () => {
+    setLoaderOn(true);
     const res = await fetch("/api/tracker", { cache: "no-store", method: "POST" });
     const newData = await res.json();
     console.log(newData);
@@ -22,10 +25,12 @@ export default function Tracker() {
 
   useEffect(() => {
     getData();
+    setLoaderOn(false);
   }, []);
 
   // Start the tracker
   const handleStart = async () => {
+    setLoaderOn(true);
     const startTime = new Date();
     await fetch("/api/tracker/start", {
       method: "PATCH",
@@ -35,10 +40,12 @@ export default function Tracker() {
       body: JSON.stringify({ startTime }),
     });
     getData();
+    setLoaderOn(false);
   };
 
   // Stop the tracker
   const handleStop = async (startTime: Date) => {
+    setLoaderOn(true);
     console.log(startTime);
     await fetch("/api/tracker/stop", {
       method: "PATCH",
@@ -49,6 +56,7 @@ export default function Tracker() {
     });
     getData();
     setStudying(false);
+    setLoaderOn(false);
   };
 
   const formatTime = (seconds: number) => {
@@ -105,9 +113,9 @@ export default function Tracker() {
         )}
 
         <section className="flex flex-col gap-8">
-          <div className="flex flex-col text-xl font-bold gap-2">
+          <div className="flex flex-col text-xl font-bold gap-2 justify-center items-center">
             <p>Time Spent: </p>
-            <p className="text-5xl">{formatTime(timeSpent)}</p>
+            {loaderOn ? <TrackerLoader /> : <p className="text-5xl">{formatTime(timeSpent)}</p>}
           </div>
           <div className="flex justify-center items-center">
             {!studying ? (
