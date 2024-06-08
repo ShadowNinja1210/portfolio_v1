@@ -23,9 +23,8 @@ export async function PATCH(req: Request) {
       return NextResponse.json({ message: "No ongoing study session found" }, { status: 404 });
     } else {
       await Tracker.updateOne({ date: today, startTime: new Date(startTime), endTime: null }, { endTime: endTime });
+      return NextResponse.json({ message: "Stopped", data: data }, { status: 200 });
     }
-
-    return NextResponse.json({ message: "Stopped" }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "Internal Server Error", error }, { status: 500 });

@@ -5,7 +5,7 @@ import { format } from "date-fns/format";
 import { NextResponse } from "next/server";
 import { enIN } from "date-fns/locale";
 
-export async function GET() {
+export async function POST() {
   try {
     await connectDB();
     setDefaultOptions({ locale: enIN });

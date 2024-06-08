@@ -11,7 +11,7 @@ export default function Tracker() {
   const [startTime, setStartTime] = useState(new Date());
 
   const getData = async () => {
-    const res = await fetch("/api/tracker");
+    const res = await fetch("/api/tracker", { cache: "no-store", method: "POST" });
     const newData = await res.json();
     console.log(newData);
     setData(newData);
