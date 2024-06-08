@@ -25,8 +25,7 @@ export default function Tracker() {
   };
 
   useEffect(() => {
-    getData();
-    setLoaderOn(false);
+    getData().then(() => setLoaderOn(false));
   }, []);
 
   // Start the tracker
@@ -40,8 +39,7 @@ export default function Tracker() {
       },
       body: JSON.stringify({ startTime }),
     });
-    getData();
-    setLoaderOn(false);
+    getData().then(() => setLoaderOn(false));
   };
 
   // Stop the tracker
@@ -55,9 +53,8 @@ export default function Tracker() {
       },
       body: JSON.stringify({ startTime }),
     });
-    getData();
+    getData().then(() => setLoaderOn(false));
     setStudying(false);
-    setLoaderOn(false);
   };
 
   const formatTime = (seconds: number) => {
