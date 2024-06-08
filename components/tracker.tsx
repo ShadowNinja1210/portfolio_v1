@@ -74,6 +74,7 @@ export default function Tracker() {
 
   useEffect(() => {
     if (studying && startTime) {
+      setLoaderOn(true);
       const start = new Date(startTime).getTime();
       setTimer(
         setInterval(() => {
@@ -81,15 +82,20 @@ export default function Tracker() {
           setTimeSpent(data.timeSpent + Math.floor((now - start) / 1000));
         }, 1000)
       );
+      setLoaderOn(false);
     } else if (!studying && timer) {
+      setLoaderOn(true);
       clearInterval(timer);
       setTimer(null);
+      setLoaderOn(false);
     }
 
     return () => {
+      setLoaderOn(true);
       if (timer) {
         clearInterval(timer);
       }
+      setLoaderOn(false);
     };
   }, [studying, startTime]);
 
