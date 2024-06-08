@@ -4,20 +4,64 @@ import { useEffect, useState } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export type TrackerProps = {
-  initialTimeSpent: number;
-  handleStart: () => void;
-  handleStop: (startTime: Date) => void;
-  startTime: Date | null;
-  studying: boolean;
+  data: {
+    timeSpent: number;
+    currentStartTime: Date;
+    studying: boolean;
+  };
+  getData: () => Promise<{
+    timeSpent: number;
+    currentStartTime: Date;
+    studying: boolean;
+  }>;
 };
 
-export default function Tracker({ initialTimeSpent, handleStart, handleStop, startTime, studying }: TrackerProps) {
-  const [timeSpent, setTimeSpent] = useState(initialTimeSpent);
+export default function Tracker({ data, getData }: TrackerProps) {
+  const [timeSpent, setTimeSpent] = useState(data.timeSpent);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  const [studying, setStudying] = useState(false);
+  const [startTime, setStartTime] = useState(new Date());
+
+  const setData = async () => {
+    const newData = await getData();
+    setStudying(newData.studying);
+    setTimeSpent(newData.timeSpent);
+    setStartTime(new Date(newData.currentStartTime));
+  };
+
+  useEffect(() => {
+    setData();
+  }, [studying, data]);
+
+  // Start the tracker
+  const handleStart = async () => {
+    const startTime = new Date();
+    await fetch("/api/tracker/start", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ startTime }),
+    });
+    setData();
+  };
+
+  // Stop the tracker
+  const handleStop = async (startTime: Date) => {
+    console.log(startTime);
+    await fetch("/api/tracker/stop", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ startTime }),
+    });
+    setData();
+  };
 
   const formatTime = (seconds: number) => {
     if (!studying) {
-      seconds = initialTimeSpent;
+      seconds = data.timeSpent;
     }
 
     const hrs = Math.floor(seconds / 3600);
@@ -34,7 +78,7 @@ export default function Tracker({ initialTimeSpent, handleStart, handleStop, sta
       setTimer(
         setInterval(() => {
           const now = new Date().getTime();
-          setTimeSpent(initialTimeSpent + Math.floor((now - start) / 1000));
+          setTimeSpent(data.timeSpent + Math.floor((now - start) / 1000));
         }, 1000)
       );
     } else if (!studying && timer) {

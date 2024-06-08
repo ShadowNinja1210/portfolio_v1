@@ -4,57 +4,27 @@ import Tracker from "@/components/tracker";
 import { useEffect, useState } from "react";
 
 export default function TrackerPage() {
-  const [timeSpent, setTimeSpent] = useState(0);
-  const [studying, setStudying] = useState(false);
-  const [startTime, setStartTime] = useState(new Date());
+  const [data, setData] = useState({
+    timeSpent: 0,
+    currentStartTime: new Date(),
+    studying: false,
+  });
 
   // Fetch data from the API
   const getData = async () => {
     const res = await fetch("/api/tracker", { cache: "no-store" });
     const data = await res.json();
-    console.log(data);
-    setTimeSpent(data.timeSpent);
-    setStudying(data.studying);
-    setStartTime(data.currentStartTime);
+    return data;
+  };
+
+  const fetchData = async () => {
+    const fetchedData = await getData();
+    setData(fetchedData);
   };
 
   useEffect(() => {
-    getData();
+    fetchData();
   }, []);
 
-  // Start the tracker
-  const handleStart = async () => {
-    const startTime = new Date();
-    await fetch("/api/tracker/start", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ startTime }),
-    });
-    getData();
-  };
-
-  // Stop the tracker
-  const handleStop = async (startTime: Date) => {
-    console.log(startTime);
-    await fetch("/api/tracker/stop", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ startTime }),
-    });
-    getData();
-  };
-
-  return (
-    <Tracker
-      initialTimeSpent={timeSpent}
-      handleStart={handleStart}
-      handleStop={handleStop}
-      startTime={startTime}
-      studying={studying}
-    />
-  );
+  return <Tracker data={data} getData={() => getData()} />;
 }
