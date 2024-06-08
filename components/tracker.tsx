@@ -13,6 +13,7 @@ export default function Tracker() {
   const getData = async () => {
     const res = await fetch("/api/tracker");
     const newData = await res.json();
+    console.log(newData);
     setData(newData);
     setStudying(newData.studying);
     setTimeSpent(newData.timeSpent);

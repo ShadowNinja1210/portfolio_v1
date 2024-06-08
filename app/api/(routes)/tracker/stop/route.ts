@@ -17,12 +17,12 @@ export async function PATCH(req: Request) {
     const endTime = new Date().toISOString();
     console.log(startTime, endTime);
 
-    const data = await Tracker.find({ date: today, startTime: startTime, endTime: null });
+    const data = await Tracker.find({ date: today, startTime: new Date(startTime), endTime: null });
 
     if (data.length === 0) {
       return NextResponse.json({ message: "No ongoing study session found" }, { status: 404 });
     } else {
-      await Tracker.updateOne({ date: today, startTime: startTime, endTime: null }, { endTime: endTime });
+      await Tracker.updateOne({ date: today, startTime: new Date(startTime), endTime: null }, { endTime: endTime });
     }
 
     return NextResponse.json({ message: "Stopped" }, { status: 200 });

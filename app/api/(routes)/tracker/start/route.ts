@@ -27,7 +27,6 @@ export async function PATCH(req: Request) {
         })
       );
     }
-
     return NextResponse.json({ message: "Started" }, { status: 200 });
   } catch (error) {
     console.error(error);
