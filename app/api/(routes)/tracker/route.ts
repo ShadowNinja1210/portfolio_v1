@@ -19,17 +19,19 @@ export async function GET() {
     if (data.length === 0) {
       Tracker.create({ date: today, startTime: null, endTime: null });
     } else {
-      data.forEach(async (item: ITrackerSchema) => {
-        if (item.startTime !== null && item.endTime !== null) {
-          if (item.startTime && item.endTime) {
-            // Just to check if even one of them is undefined for the sake of TypeScript
-            timeSpent += differenceInSeconds(item.endTime, item.startTime);
+      await Promise.all(
+        data.map(async (item: ITrackerSchema) => {
+          if (item.startTime !== null && item.endTime !== null) {
+            if (item.startTime && item.endTime) {
+              // Just to check if even one of them is undefined for the sake of TypeScript
+              timeSpent += differenceInSeconds(item.endTime, item.startTime);
+            }
+          } else if (item.startTime !== null && item.endTime === null) {
+            studying = true;
+            currentStartTime = item.startTime;
           }
-        } else if (item.startTime !== null && item.endTime === null) {
-          studying = true;
-          currentStartTime = item.startTime;
-        }
-      });
+        })
+      );
     }
 
     return NextResponse.json({ timeSpent, currentStartTime, studying }, { status: 200 });

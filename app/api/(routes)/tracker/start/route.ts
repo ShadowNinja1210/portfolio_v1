@@ -19,11 +19,13 @@ export async function PATCH(req: Request) {
     if (data.length === 0) {
       await Tracker.create({ date: today, startTime: startTime, endTime: null });
     } else {
-      data.map(async (item) => {
-        if (item.startTime === null && item.endTime === null) {
-          await Tracker.updateOne({ date: today }, { startTime: startTime });
-        }
-      });
+      await Promise.all(
+        data.map(async (item) => {
+          if (item.startTime === null && item.endTime === null) {
+            await Tracker.updateOne({ _id: item._id }, { startTime: startTime });
+          }
+        })
+      );
     }
 
     return NextResponse.json({ message: "Started" }, { status: 200 });
