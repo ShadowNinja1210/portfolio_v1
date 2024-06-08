@@ -71,21 +71,27 @@ export default function Tracker() {
   };
 
   useEffect(() => {
-    if (studying && startTime) {
-      setLoaderOn(true);
-      const start = new Date(startTime).getTime();
-      setTimer(
-        setInterval(() => {
-          const now = new Date().getTime();
-          setTimeSpent(data.timeSpent + Math.floor((now - start) / 1000));
-        }, 1000)
-      );
-      setLoaderOn(false);
-    } else if (!studying && timer) {
-      setLoaderOn(true);
-      clearInterval(timer);
-      setTimer(null);
-      setLoaderOn(false);
+    try {
+      if (studying && startTime) {
+        setLoaderOn(true);
+        const start = new Date(startTime).getTime();
+        setTimer(
+          setInterval(() => {
+            const now = new Date().getTime();
+            setTimeSpent(data.timeSpent + Math.floor((now - start) / 1000));
+          }, 1000)
+        );
+      } else if (!studying && timer) {
+        setLoaderOn(true);
+        clearInterval(timer);
+        setTimer(null);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setTimeout(() => {
+        setLoaderOn(false);
+      }, 1000);
     }
 
     return () => {
@@ -125,15 +131,15 @@ export default function Tracker() {
             {!studying ? (
               <button
                 className="px-4 py-2 bg-green-700 text-2xl font-medium rounded-lg disabled:opacity-40"
-                disabled={studying}
+                disabled={studying || loaderOn}
                 onClick={handleStart}
               >
                 Start
               </button>
             ) : (
               <button
-                className="px-4 py-2 bg-red-700 text-2xl font-medium rounded-lg"
-                disabled={!studying}
+                className="px-4 py-2 bg-red-700 text-2xl font-medium rounded-lg disabled:opacity-40"
+                disabled={!studying || loaderOn}
                 onClick={() => startTime && handleStop(startTime)}
               >
                 Stop
