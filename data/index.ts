@@ -182,12 +182,106 @@ export const socialMedia = [
   },
 ];
 
-const games = [
+export const games = [
   {
     id: 1,
     title: "Game 1",
     description: "This is a game",
     img: "/game1.svg",
+    link: "#",
+  },
+  {
+    id: 2,
+    title: "Game 2",
+    description: "This is another game",
+    img: "/game2.svg",
+    link: "#",
+  },
+  {
+    id: 3,
+    title: "Game 3",
+    description: "This is yet another game",
+    img: "/game3.svg",
+    link: "#",
+  },
+  {
+    id: 4,
+    title: "Game 4",
+    description: "This is a fourth game",
+    img: "/game4.svg",
+    link: "#",
+  },
+  {
+    id: 5,
+    title: "Game 5",
+    description: "This is the fifth game",
+    img: "/game5.svg",
+    link: "#",
+  },
+  {
+    id: 6,
+    title: "Game 6",
+    description: "This is the sixth game",
+    img: "/game6.svg",
+    link: "#",
+  },
+  {
+    id: 7,
+    title: "Game 7",
+    description: "This is the seventh game",
+    img: "/game7.svg",
+    link: "#",
+  },
+];
+
+export const apps = [
+  {
+    id: 1,
+    title: "App 1",
+    description: "This is an app",
+    img: "/app1.svg",
+    link: "#",
+  },
+  {
+    id: 2,
+    title: "App 2",
+    description: "This is another app",
+    img: "/app2.svg",
+    link: "#",
+  },
+  {
+    id: 3,
+    title: "App 3",
+    description: "This is yet another app",
+    img: "/app3.svg",
+    link: "#",
+  },
+  {
+    id: 4,
+    title: "App 4",
+    description: "This is a fourth app",
+    img: "/app4.svg",
+    link: "#",
+  },
+  {
+    id: 5,
+    title: "App 5",
+    description: "This is the fifth app",
+    img: "/app5.svg",
+    link: "#",
+  },
+  {
+    id: 6,
+    title: "App 6",
+    description: "This is the sixth app",
+    img: "/app6.svg",
+    link: "#",
+  },
+  {
+    id: 7,
+    title: "App 7",
+    description: "This is the seventh app",
+    img: "/app7.svg",
     link: "#",
   },
 ];
