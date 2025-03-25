@@ -3,6 +3,8 @@ import { FaLocationArrow } from "react-icons/fa6";
 import MagicButton from "@/components/ui/magic-button";
 import { Spotlight } from "@/components/ui/spotlight";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effects";
+import { BsWhatsapp } from "react-icons/bs";
+import { socialMedia } from "@/data";
 
 const Hero = () => {
   return (
@@ -39,9 +41,20 @@ const Hero = () => {
             Hi! I&apos;m Mohit Jeswani, a FullStack Web Developer based in India.
           </p>
 
-          <a href="#about">
-            <MagicButton title="Show my work" icon={<FaLocationArrow />} position="right" />
-          </a>
+          <div className="flex gap-8">
+            <a href="#projects">
+              <MagicButton title="Show my work" icon={<FaLocationArrow />} position="right" />
+            </a>
+
+            <a href={socialMedia[0].link} target="_blank" rel="noreferrer">
+              <MagicButton
+                otherClasses=" bg-green-600 px-2"
+                title="Contact me now"
+                icon={<BsWhatsapp />}
+                position="right"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>

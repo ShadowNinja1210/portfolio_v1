@@ -72,9 +72,44 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "Jus-B Fashion - E-commerce Website",
+    des: "A full-stack e-commerce website built using Next.js, Tailwind CSS, and Firebase. Admin panel for managing products and orders.",
+    img: "/projects/p1.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/firebase.svg", "zustand.svg"],
+    link: "https://jus-b-fashion.com/",
+  },
+  {
+    id: 2,
+    title: "Earthycrafts - Stone Handicrafts Website",
+    des: "A full-stack product displaying website built using Next.js, Tailwind CSS, and MongoDB. Admin panel for managing products and orders.",
+    img: "/projects/p2.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/c.svg", "/mongo.svg"],
+    link: "https://earthycrafts.com/",
+  },
+  {
+    id: 3,
+    title: "Agrawal Stones - Stone Industry Website",
+    des: "Restaurant responsive front-end website with reservation booking using React.js.",
+    img: "/projects/p3.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/twilio.svg", "zustand.svg"],
+    link: "https://www.agrawalstones.com/",
+  },
+  {
+    id: 4,
     title: "Discordia - Live team chat WebApp",
     des: "Recreated the Discord app with real-time chat functionality using Next.js, Socket.io an Livekit for video and audio calls.",
-    img: "/p1.svg",
+    img: "/projects/extra-p1.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/c.svg", "/socket.svg"],
+    link: "https://discord-clone-beige-six.vercel.app/",
+  },
+];
+
+export const extraApps = [
+  {
+    id: 1,
+    title: "Discordia - Live team chat WebApp",
+    des: "Recreated the Discord app with real-time chat functionality using Next.js, Socket.io an Livekit for video and audio calls.",
+    img: "/projects/p1.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/c.svg", "/socket.svg"],
     link: "https://discord-clone-beige-six.vercel.app/",
   },
@@ -82,7 +117,7 @@ export const projects = [
     id: 2,
     title: "Promptompia - AI Prompts Share App",
     des: "Share you unique and creative AI prompts with the world, using Next.js.",
-    img: "/p2.svg",
+    img: "/projects/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/oAuth.svg", "/mongo.svg"],
     link: "https://share-prompt-zeta.vercel.app/",
   },
@@ -90,17 +125,9 @@ export const projects = [
     id: 3,
     title: "Little-Lemon Restaurant Website",
     des: "Restaurant responsive front-end website with reservation booking using React.js.",
-    img: "/p3.svg",
+    img: "/projects/p3.svg",
     iconLists: ["/re.svg", "/javascript.svg", "/html.svg", "/css.svg"],
     link: "https://little-lemon-web.netlify.app/",
-  },
-  {
-    id: 4,
-    title: "Applications for Real life uses & Games",
-    des: "Various applications and games built using React, Next.js, Javascript, and Tailwind CSS.",
-    img: "/p4.svg",
-    iconLists: ["/re.svg", "/node.svg", "/mongo.svg", "/next.svg", "/javascript.svg"],
-    link: "#",
   },
 ];
 
@@ -157,8 +184,8 @@ export const workExperience = [
 
   {
     id: 2,
-    title: "Freelance Web Dev Projects",
-    desc: "1 Year | Worked on various freelance projects, developing websites, UI sections, and web applications using React.js, Next.js, Node.js and Tailwind CSS.",
+    title: "Fullstack Developer",
+    desc: "2.5 Years | Worked on various freelance projects, developing websites, UI sections, and web applications using React.js, Next.js, Node.js and Tailwind CSS.",
     className: "md:col-span-2",
     thumbnail: "/exp3.svg",
   },
@@ -167,16 +194,21 @@ export const workExperience = [
 export const socialMedia = [
   {
     id: 1,
+    img: "/whatsapp.svg",
+    link: "https://wa.link/cbrwx9",
+  },
+  {
+    id: 2,
     img: "/git.svg",
     link: "https://github.com/ShadowNinja1210",
   },
   {
-    id: 2,
+    id: 3,
     img: "/twit.svg",
     link: "https://x.com/MohitJeswani4",
   },
   {
-    id: 3,
+    id: 4,
     img: "/link.svg",
     link: "https://www.linkedin.com/in/mohit-jeswani-0233041b2/",
   },
