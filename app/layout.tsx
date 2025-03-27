@@ -1,10 +1,9 @@
-import { Analytics } from "@vercel/analytics/react";
-
 import { ThemeProvider } from "./provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import WhatsappFloater from "@/components/whatsapp-floater";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +23,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <WhatsappFloater />
           {children}
-          <Analytics />
+          <GoogleAnalytics gaId="G-WET32GENYB" />
         </ThemeProvider>
       </body>
     </html>

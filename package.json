@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.6.3",
+    "@next/third-parties": "^15.2.4",
     "@react-three/drei": "^9.105.6",
     "@react-three/fiber": "^8.16.6",
     "@sentry/nextjs": "^8.5.0",
